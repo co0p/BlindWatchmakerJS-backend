@@ -6,7 +6,7 @@ data to the `/sort` endpoint
 
 ## try it
 
-Go to [co0p-blindwatchmaker.herokuapp.com](co0p-blindwatchmaker.herokuapp.com) and
+Go to [https://co0p-blindwatchmaker.herokuapp.com](https://co0p-blindwatchmaker.herokuapp.com) and
 try it for yourself.
 
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BlindWatchmakerJS-backend</title>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
+
+    <style media="screen">
+      textarea {
+        width: 80%;
+      }
+      #output {
+        height: 200px;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <h1>BlindWatchmakerJS-backend</h1>
+
+    <p>A timing backend for the blind watchmaker genetic algorithm implementation</p>
+
+    <form>
+
+      <p>Url: <br>
+      <input disabled="disabled" id="url">
+      <input type="checkbox" id="details">Details</input>
+      </p>
+
+
+      <p>Input: <br>
+      <textarea disabled="disabled" id="input">[123,345,123,233,12,34,6,22,35,563,234,2341,1,234,5,3,24,5632,123]</textarea>
+      </p>
+
+      <input type="button" id="run" value="do timing experiment">
+
+      <p>Output: <br>
+      <textarea disabled="disabled" id="output"></textarea>
+      </p>
+    </form>
+
+
+    <script>
+
+    var url = '/sort';
+    $('#url').val(url);
+
+    $('#details').on('click', function(data) {
+      var newUrl = this.checked ? url + '?details=true' : url;
+      $('#url').val(newUrl);
+    });
+
+
+    $("#run").on('click', function( event ) {
+      event.preventDefault();
+
+      var data = $('#input').val();
+      var url = $('#url').val();
+
+      var experiment = $.ajax({
+        method: 'post',
+        url: url,
+        data: data,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+      });
+
+      experiment.done(function( data ) {
+        $('#output').val(JSON.stringify(data, null, 2));
+      });
+    });
+
+    </script>
+
+  </body>
+</html>
